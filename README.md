@@ -13,7 +13,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Open [the report](http://127.0.0.1:4173). The included capture is from a real native PostgreSQL run. Use `npm run bench` to generate a replacement capture with the bundled in-memory PGlite runner. Use `npm test` for the unit and TypeScript checks.
+Open [the report](http://127.0.0.1:4173). The included capture is from a real native PostgreSQL run. Use `npm run bench` to generate a replacement capture with the bundled in-memory PGlite runner. The embedded process has a 30-second deadline and preserves the previous report if it times out. Set `QUERY_CLINIC_EMBEDDED_TIMEOUT_MS` to a lower value to tighten the deadline. Use `npm test` for the unit and TypeScript checks.
 
 ## Run native PostgreSQL locally
 
@@ -38,6 +38,8 @@ Wait for `pg_isready` to report that the server is accepting connections. The co
 
 ## Run against a pull request
 
+The workflow also runs when benchmark code, fixtures, dependencies, or report assets change on `main`. That push check compares the previous and new commits. A manual run uses the bundled index-drop demo.
+
 1. Add the project to a GitHub repository with Actions enabled. Keep the synthetic fixture and benchmark query in the base branch.
 2. Open a branch that adds `DROP INDEX orders_customer_history_idx;` to `fixture/migration.sql`. Open a PR. The workflow compares the PR base commit with GitHub’s proposed merge commit. It uses the base revision's shared setup and query, and checks that the full orders data matches after applying each migration.
 3. Open **Actions → Query Clinic**. The job summary shows the medians and result check. Use the Actions summary for a quick comparison. For the interactive view, download only `data.json` from **query-clinic-report**, copy that file into `report/` in a separate, trusted default-branch checkout, and run `npm run dev` there. Treat PR output as untrusted data. Keep the viewer and all executable files from the trusted checkout.
@@ -47,6 +49,6 @@ The check reports timing differences without gating merges on a noisy sample. Da
 
 ## Publish the portfolio report
 
-The `report/` folder works on a static host. For GitHub Pages, restrict the `github-pages` environment to the exact default branch (branch rule only), choose **GitHub Actions** under repository **Settings → Pages**, and dispatch **Publish Query Clinic report** on the default branch. The deployment uploads the committed synthetic capture. Review the JSON as well as the visible report before publishing, since PostgreSQL plans can contain SQL literals and object names.
+The `report/` folder works on a static host. For GitHub Pages, restrict the `github-pages` environment to the exact default branch (branch rule only), choose **GitHub Actions** under repository **Settings → Pages**, and dispatch **Publish Query Clinic report** on the default branch. The deployment uploads the committed synthetic capture and checks the live report in Chrome before marking the workflow successful. To rerun that check locally, set `QUERY_CLINIC_SITE_URL` to the published URL and run `npm run test:pages` with Google Chrome installed. Review the JSON as well as the visible report before publishing, since PostgreSQL plans can contain SQL literals and object names.
 
 The evidence folder contains two native captures from GitHub Actions. Run `git fetch --tags` to retrieve the exact tested merge commits, then pass the two SHAs from the desired capture to the native CLI.

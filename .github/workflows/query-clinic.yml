@@ -2,6 +2,15 @@ name: Query Clinic
 
 on:
   pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'fixture/**'
+      - 'report/**'
+      - 'package*.json'
+      - 'tsconfig.json'
+      - '.github/workflows/query-clinic.yml'
   workflow_dispatch:
 
 permissions:
@@ -42,11 +51,11 @@ jobs:
       - run: npm test
       - name: Compare on disposable PostgreSQL
         env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
           QUERY_CLINIC_DATABASE_URL: postgresql://postgres:query-clinic-ephemeral@127.0.0.1:${{ job.services.postgres.ports['5432'] }}/query_clinic
         run: |
           npm run test:native
-          if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
+          if [ -n "$BASE_SHA" ] && [ "$BASE_SHA" != 0000000000000000000000000000000000000000 ]; then
             npm run bench:native -- "$BASE_SHA" "$GITHUB_SHA"
           else
             npm run bench:native

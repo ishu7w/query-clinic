@@ -10,7 +10,8 @@
     "dev": "node src/serve.ts",
     "test": "node --test src/*.test.ts && tsc --noEmit",
     "bench:native": "node src/bench.ts --native",
-    "test:native": "node --test src/database.integration.ts src/bench.integration.ts"
+    "test:native": "node --test src/database.integration.ts src/bench.integration.ts",
+    "test:pages": "node src/pages-smoke.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.6.0",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/pg": "^8.23.1",
+    "playwright-core": "1.65.1",
     "typescript": "~6.0.3"
   }
 }

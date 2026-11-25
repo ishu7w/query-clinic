@@ -1,6 +1,7 @@
 import { appendFile, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, fork } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { embedded, nativeFactory } from './database.ts';
 import type { Database } from './database.ts';
 import { median } from './metrics.ts';
@@ -147,22 +148,57 @@ async function capture() {
   }
 }
 
-const report = await capture();
-const target = new URL('report/data.json', root);
-const temporary = new URL(`report/${randomUUID()}.tmp`, root);
-try {
-  await writeFile(temporary, JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
-  await rename(temporary, target);
-} finally {
-  await rm(temporary, { force: true });
+function captureEmbedded(): Promise<Awaited<ReturnType<typeof capture>>> {
+  const deadline = Number(process.env.QUERY_CLINIC_EMBEDDED_TIMEOUT_MS ?? 30_000);
+  if (!Number.isSafeInteger(deadline) || deadline < 1 || deadline > 30_000) {
+    throw new Error('QUERY_CLINIC_EMBEDDED_TIMEOUT_MS must be an integer from 1 to 30000.');
+  }
+
+  return new Promise((resolve, reject) => {
+    const child = fork(fileURLToPath(import.meta.url));
+    let report: Awaited<ReturnType<typeof capture>> | undefined;
+    let timedOut = false;
+    const timer = setTimeout(() => {
+      timedOut = true;
+      child.kill('SIGKILL');
+    }, deadline);
+    child.once('message', message => { report = message as typeof report; });
+    child.once('error', error => {
+      clearTimeout(timer);
+      reject(error);
+    });
+    child.once('close', (code, signal) => {
+      clearTimeout(timer);
+      if (timedOut) reject(new Error(`Embedded benchmark exceeded ${deadline} ms. The existing report was preserved.`));
+      else if (code !== 0 || !report) reject(new Error(`Embedded benchmark failed (${signal ?? code}).`));
+      else resolve(report);
+    });
+  });
 }
-console.log(`Report ready · baseline ${report.baseline.medianMs} ms · candidate ${report.candidate.medianMs} ms`);
-if (process.env.GITHUB_STEP_SUMMARY) {
-  await appendFile(process.env.GITHUB_STEP_SUMMARY, [
-    '## Query Clinic benchmark', '',
-    '| Baseline median | Candidate median | Result parity |',
-    '| --- | --- | --- |',
-    `| ${report.baseline.medianMs.toFixed(3)} ms | ${report.candidate.medianMs.toFixed(3)} ms | ${report.resultRows} ordered rows matched |`,
-    '', 'Download the **query-clinic-report** artifact for both execution plans. Timing is informational.', ''
-  ].join('\n'));
+
+async function publish(report: Awaited<ReturnType<typeof capture>>) {
+  const target = new URL('report/data.json', root);
+  const temporary = new URL(`report/${randomUUID()}.tmp`, root);
+  try {
+    await writeFile(temporary, JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
+    await rename(temporary, target);
+  } finally {
+    await rm(temporary, { force: true });
+  }
+  console.log(`Report ready · baseline ${report.baseline.medianMs} ms · candidate ${report.candidate.medianMs} ms`);
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    await appendFile(process.env.GITHUB_STEP_SUMMARY, [
+      '## Query Clinic benchmark', '',
+      '| Baseline median | Candidate median | Result parity |',
+      '| --- | --- | --- |',
+      `| ${report.baseline.medianMs.toFixed(3)} ms | ${report.candidate.medianMs.toFixed(3)} ms | ${report.resultRows} ordered rows matched |`,
+      '', 'Download the **query-clinic-report** artifact for both execution plans. Timing is informational.', ''
+    ].join('\n'));
+  }
+}
+
+if (!native && process.send) {
+  process.send(await capture());
+} else {
+  await publish(native ? await capture() : await captureEmbedded());
 }
