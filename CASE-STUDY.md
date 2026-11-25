@@ -12,12 +12,15 @@ Each comparison creates two disposable PostgreSQL databases, verifies the same 2
 
 | Comparison | Baseline median | Candidate median | Observed plan change |
 | --- | ---: | ---: | --- |
-| Drop the index | 0.042 ms | 13.874 ms | Index scan → sequential scan and sort |
-| Restore the index | 11.371 ms | 0.036 ms | Sequential scan and sort → index scan |
+| Drop the index | 0.038 ms | 7.746 ms | Index scan → sequential scan and sort |
+| Restore the index | 5.578 ms | 0.021 ms | Sequential scan and sort → index scan |
 
-The plan's root recorded 23 shared buffer hits with the index and 1,637 without it. The candidate still returned exactly the same rows. These captures came from local native PostgreSQL 18.7 on macOS arm64. Within-run comparisons control the fixture and machine. Across-run differences, such as 13.874 ms versus 11.371 ms for the slow side, show why individual timing thresholds should be treated cautiously.
+In the regression run, the plan’s root recorded 23 shared buffer hits with the index and 1,637 without it. Both runs returned the same 20 ordered rows and recorded the same fingerprint for all 250,000 orders. GitHub Actions ran the captures on PostgreSQL 18.7 (Debian 18.7-1.pgdg12+5). Compare times within a run, since separate hosted machines may have different load and cache behavior.
 
-[Regression capture](evidence/regression.json) · [Restoration capture](evidence/restored.json)
+- [Index-drop PR](https://github.com/ishu7w/query-clinic/pull/1) · [Actions run](https://github.com/ishu7w/query-clinic/actions/runs/45591698502) · [Captured report](evidence/regression.json)
+- [Index-restoration PR](https://github.com/ishu7w/query-clinic/pull/2) · [Actions run](https://github.com/ishu7w/query-clinic/actions/runs/45591704014) · [Captured report](evidence/restored.json)
+
+The tested merge commits are retained as the `demo-regression` and `demo-restoration` tags. Fetch tags before replaying the exact SHAs in the captures.
 
 ## What shipped
 

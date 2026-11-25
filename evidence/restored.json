@@ -1,33 +1,34 @@
 {
   "version": 1,
-  "capturedAt": "2026-11-25T09:58:02.180Z",
-  "engine": "PostgreSQL 18.7",
-  "runner": "darwin/arm64 · Node 25.8.1",
+  "capturedAt": "2026-11-25T10:06:39.550Z",
+  "engine": "PostgreSQL 18.7 (Debian 18.7-1.pgdg12+5)",
+  "runner": "linux/x64 · Node 22.23.5",
   "settings": {
-    "version": "18.7",
+    "version": "18.7 (Debian 18.7-1.pgdg12+5)",
     "shared_buffers": "128MB",
     "work_mem": "4MB",
     "max_parallel_workers_per_gather": "2"
   },
   "fixtureHash": "ffedd5c35f4fb767d4b34f10fe99e35338717979b66ee66f86eee75bd9538f11",
   "fixtureRows": 250000,
+  "fixtureDataHash": "80146091ec2e0da7251e328b673b6b2e1ea2186aa9762758063eddfdda17036f",
   "resultRows": 20,
   "query": "SELECT id, placed_at, total_cents\nFROM orders\nWHERE customer_id = 417\nORDER BY placed_at DESC, id DESC\nLIMIT 20",
   "change": "-- Baseline migration entry point. Add candidate SQL here on a feature branch.",
   "revisions": {
-    "base": "9621d1977db18a15cfbefd9ef5ec8f74a716751e",
-    "head": "09661f149f0b5987ee4a3500cdab0edf25398ac5"
+    "base": "f9fe75488d6c8d03b13baf768115b8636c5512f2",
+    "head": "4c9a2acbe895eae4457a93ef46143b2ca1e57cf1"
   },
   "baselineMigration": "DROP INDEX orders_customer_history_idx;",
   "baseline": {
     "samples": [
-      11.249,
-      11.222,
-      11.798,
-      11.666,
-      11.371
+      6.231,
+      5.965,
+      5.578,
+      5.495,
+      5.405
     ],
-    "medianMs": 11.371,
+    "medianMs": 5.578,
     "plan": {
       "Node Type": "Limit",
       "Parallel Aware": false,
@@ -84,7 +85,7 @@
               "Total Cost": 3432.01,
               "Plan Rows": 29,
               "Plan Width": 16,
-              "Actual Rows": 13.5,
+              "Actual Rows": 14.5,
               "Actual Loops": 2,
               "Disabled": false,
               "Sort Key": [
@@ -150,13 +151,13 @@
   },
   "candidate": {
     "samples": [
-      0.036,
-      0.017,
-      0.039,
-      0.023,
-      0.038
+      0.03,
+      0.012,
+      0.021,
+      0.014,
+      0.021
     ],
-    "medianMs": 0.036,
+    "medianMs": 0.021,
     "plan": {
       "Node Type": "Limit",
       "Parallel Aware": false,

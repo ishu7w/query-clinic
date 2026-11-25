@@ -49,4 +49,4 @@ The check reports timing differences without gating merges on a noisy sample. Da
 
 The `report/` folder works on a static host. For GitHub Pages, choose **GitHub Actions** under repository **Settings → Pages** and dispatch **Publish Query Clinic report** on the default branch. The deployment uploads the committed synthetic capture. Review the JSON as well as the visible report before publishing, since PostgreSQL plans can contain SQL literals and object names.
 
-The evidence folder contains two native captures from a local Git rehearsal so the case study remains reproducible independently of GitHub.
+The evidence folder contains two native captures from GitHub Actions. Run `git fetch --tags` to retrieve the exact tested merge commits, then pass the two SHAs from the desired capture to the native CLI.

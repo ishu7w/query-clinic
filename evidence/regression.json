@@ -1,39 +1,40 @@
 {
   "version": 1,
-  "capturedAt": "2026-11-25T09:57:35.122Z",
-  "engine": "PostgreSQL 18.7",
-  "runner": "darwin/arm64 · Node 25.8.1",
+  "capturedAt": "2026-11-25T10:06:35.473Z",
+  "engine": "PostgreSQL 18.7 (Debian 18.7-1.pgdg12+5)",
+  "runner": "linux/x64 · Node 22.23.5",
   "settings": {
-    "version": "18.7",
+    "version": "18.7 (Debian 18.7-1.pgdg12+5)",
     "shared_buffers": "128MB",
     "work_mem": "4MB",
     "max_parallel_workers_per_gather": "2"
   },
   "fixtureHash": "ffedd5c35f4fb767d4b34f10fe99e35338717979b66ee66f86eee75bd9538f11",
   "fixtureRows": 250000,
+  "fixtureDataHash": "80146091ec2e0da7251e328b673b6b2e1ea2186aa9762758063eddfdda17036f",
   "resultRows": 20,
   "query": "SELECT id, placed_at, total_cents\nFROM orders\nWHERE customer_id = 417\nORDER BY placed_at DESC, id DESC\nLIMIT 20",
   "change": "DROP INDEX orders_customer_history_idx;",
   "revisions": {
-    "base": "429442010c8f719c6766525dc3c36c0371a15f01",
-    "head": "9621d1977db18a15cfbefd9ef5ec8f74a716751e"
+    "base": "00c6a258a4de3234d92b02ad7a303b1967c67583",
+    "head": "ec3864602e8d3a056a018f9b38ad90b8efce90a8"
   },
   "baselineMigration": "-- Baseline migration entry point. Add candidate SQL here on a feature branch.",
   "baseline": {
     "samples": [
-      0.039,
-      0.05,
-      0.042,
       0.043,
-      0.023
+      0.038,
+      0.017,
+      0.049,
+      0.035
     ],
-    "medianMs": 0.042,
+    "medianMs": 0.038,
     "plan": {
       "Node Type": "Limit",
       "Parallel Aware": false,
       "Async Capable": false,
       "Startup Cost": 0.42,
-      "Total Cost": 82.32,
+      "Total Cost": 82.27,
       "Plan Rows": 20,
       "Plan Width": 16,
       "Actual Rows": 20,
@@ -60,7 +61,7 @@
           "Relation Name": "orders",
           "Alias": "orders",
           "Startup Cost": 0.42,
-          "Total Cost": 205.16,
+          "Total Cost": 205.04,
           "Plan Rows": 50,
           "Plan Width": 16,
           "Actual Rows": 20,
@@ -85,13 +86,13 @@
   },
   "candidate": {
     "samples": [
-      15.859,
-      13.034,
-      14.209,
-      13.874,
-      13.822
+      8.143,
+      7.746,
+      7.547,
+      7.702,
+      8.833
     ],
-    "medianMs": 13.874,
+    "medianMs": 7.746,
     "plan": {
       "Node Type": "Limit",
       "Parallel Aware": false,
@@ -148,7 +149,7 @@
               "Total Cost": 3432.01,
               "Plan Rows": 29,
               "Plan Width": 16,
-              "Actual Rows": 13.5,
+              "Actual Rows": 15.5,
               "Actual Loops": 2,
               "Disabled": false,
               "Sort Key": [
@@ -156,7 +157,7 @@
                 "id DESC"
               ],
               "Sort Method": "quicksort",
-              "Sort Space Used": 26,
+              "Sort Space Used": 27,
               "Sort Space Type": "Memory",
               "Shared Hit Blocks": 1637,
               "Shared Read Blocks": 0,
