@@ -1,0 +1,1 @@
+-- Baseline migration entry point. Add candidate SQL here on a feature branch.

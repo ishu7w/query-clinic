@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Query Clinic — Benchmark report</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="frame appbar-inner">
+      <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Query Clinic</div>
+      <a class="download" href="./data.json" download="query-clinic-report.json">Download JSON <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg></a>
+    </div>
+  </header>
+  <main>
+    <section class="query">
+      <div class="frame query-inner">
+        <div><h1>Order history</h1><p id="description">Recent orders for one customer, before and after removing the supporting index.</p></div>
+        <span id="verdict" class="verdict" hidden></span>
+      </div>
+    </section>
+    <p id="loading" class="frame loading" role="status">Loading benchmark report…</p>
+    <div id="report" hidden>
+      <div class="frame tabs" role="tablist" aria-label="Report view">
+        <button type="button" id="comparison-tab" role="tab" aria-selected="true" aria-controls="comparison">Comparison</button>
+        <button type="button" id="sql-tab" role="tab" aria-selected="false" aria-controls="sql" tabindex="-1">SQL &amp; methodology</button>
+      </div>
+      <div id="comparison" class="frame view" role="tabpanel" aria-labelledby="comparison-tab" tabindex="0">
+        <section class="summary" aria-labelledby="timing-title">
+          <div class="timing">
+            <div class="section-head"><div><h2 id="timing-title">Execution time</h2><p>Median of five measured runs</p></div><span id="delta" class="delta"></span></div>
+            <div class="chart">
+              <div class="measure"><label for="base-bar">Baseline</label><progress id="base-bar" class="baseline"></progress><strong id="base-time"></strong></div>
+              <div class="measure"><label for="candidate-bar">Candidate</label><progress id="candidate-bar" class="candidate"></progress><strong id="candidate-time"></strong></div>
+              <div class="axis"><span></span><div id="ticks"></div><span></span></div>
+            </div>
+          </div>
+          <aside class="run-facts" aria-labelledby="facts-title">
+            <h2 id="facts-title">Run details</h2>
+            <dl><div><dt>Fixture</dt><dd id="fixture"></dd></div><div><dt>Result check</dt><dd id="parity"></dd></div><div><dt>Engine</dt><dd id="engine"></dd></div></dl>
+          </aside>
+        </section>
+        <section class="plans" aria-labelledby="plan-title">
+          <div class="section-head"><div><h2 id="plan-title">Execution plans</h2><p>Select an operator to inspect the work PostgreSQL recorded.</p></div></div>
+          <div class="plan-grid">
+            <section class="plan"><header><span class="swatch before"></span><h3>Baseline</h3><code id="base-label">Index present</code></header><div id="base-tree"></div></section>
+            <section class="plan"><header><span class="swatch after"></span><h3>Candidate</h3><code id="candidate-label">Index removed</code></header><div id="candidate-tree"></div></section>
+          </div>
+        </section>
+      </div>
+      <section id="sql" class="frame view" role="tabpanel" aria-labelledby="sql-tab" tabindex="0" hidden>
+        <div class="sql-grid">
+          <div><h2>Benchmark query</h2><pre><code id="query"></code></pre></div>
+          <div><h2>Candidate migration</h2><pre><code id="change"></code></pre></div>
+          <div id="base-migration-panel" hidden><h2>Baseline migration</h2><pre><code id="base-migration"></code></pre></div>
+        </div>
+        <h2>Measurement notes</h2>
+        <p id="method" class="method">Both instances use the same synthetic fixture. After one warmup per side, the runner alternates measurement order across five pairs. Values come from PostgreSQL execution time in an embedded engine. Network and application latency are outside this measurement.</p>
+        <div class="sql-grid"><div><h3>Baseline samples</h3><p id="base-samples" class="sample"></p></div><div><h3>Candidate samples</h3><p id="candidate-samples" class="sample"></p></div></div>
+        <p class="capture">Captured <time id="captured"></time><span id="provenance"></span></p>
+      </section>
+    </div>
+  </main>
+  <footer class="frame footer"><span>Query Clinic</span><span id="footer-engine">Synthetic database benchmark</span></footer>
+</body>
+</html>

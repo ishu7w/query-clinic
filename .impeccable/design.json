@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T09:53:06+00:00",
+  "title": "Design System: Query Clinic",
+  "extensions": {
+    "colorMeta": {
+      "deep-teal": {
+        "role": "primary",
+        "displayName": "Deep Teal",
+        "tonalRamp": [
+          "oklch(15% 0.0344 179.52)",
+          "oklch(26% 0.0344 179.52)",
+          "oklch(37% 0.0344 179.52)",
+          "oklch(49% 0.0344 179.52)",
+          "oklch(61% 0.0344 179.52)",
+          "oklch(72% 0.0344 179.52)",
+          "oklch(84% 0.0344 179.52)",
+          "oklch(95% 0.0344 179.52)"
+        ]
+      },
+      "query-teal": {
+        "role": "primary",
+        "displayName": "Query Teal",
+        "tonalRamp": [
+          "oklch(15% 0.0406 182.44)",
+          "oklch(26% 0.0406 182.44)",
+          "oklch(37% 0.0406 182.44)",
+          "oklch(49% 0.0406 182.44)",
+          "oklch(61% 0.0406 182.44)",
+          "oklch(72% 0.0406 182.44)",
+          "oklch(84% 0.0406 182.44)",
+          "oklch(95% 0.0406 182.44)"
+        ]
+      },
+      "evidence-green": {
+        "role": "primary",
+        "displayName": "Evidence Green",
+        "tonalRamp": [
+          "oklch(15% 0.0789 178.80)",
+          "oklch(26% 0.0789 178.80)",
+          "oklch(37% 0.0789 178.80)",
+          "oklch(49% 0.0789 178.80)",
+          "oklch(61% 0.0789 178.80)",
+          "oklch(72% 0.0789 178.80)",
+          "oklch(84% 0.0789 178.80)",
+          "oklch(95% 0.0789 178.80)"
+        ]
+      },
+      "evidence-wash": {
+        "role": "primary",
+        "displayName": "Evidence Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0124 157.00)",
+          "oklch(26% 0.0124 157.00)",
+          "oklch(37% 0.0124 157.00)",
+          "oklch(49% 0.0124 157.00)",
+          "oklch(61% 0.0124 157.00)",
+          "oklch(72% 0.0124 157.00)",
+          "oklch(84% 0.0124 157.00)",
+          "oklch(95% 0.0124 157.00)"
+        ]
+      },
+      "candidate-clay": {
+        "role": "secondary",
+        "displayName": "Candidate Clay",
+        "tonalRamp": [
+          "oklch(15% 0.1407 35.73)",
+          "oklch(26% 0.1407 35.73)",
+          "oklch(37% 0.1407 35.73)",
+          "oklch(49% 0.1407 35.73)",
+          "oklch(61% 0.1407 35.73)",
+          "oklch(72% 0.1407 35.73)",
+          "oklch(84% 0.1407 35.73)",
+          "oklch(95% 0.1407 35.73)"
+        ]
+      },
+      "clay-wash": {
+        "role": "secondary",
+        "displayName": "Clay Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0144 50.80)",
+          "oklch(26% 0.0144 50.80)",
+          "oklch(37% 0.0144 50.80)",
+          "oklch(49% 0.0144 50.80)",
+          "oklch(61% 0.0144 50.80)",
+          "oklch(72% 0.0144 50.80)",
+          "oklch(84% 0.0144 50.80)",
+          "oklch(95% 0.0144 50.80)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0251 178.66)",
+          "oklch(26% 0.0251 178.66)",
+          "oklch(37% 0.0251 178.66)",
+          "oklch(49% 0.0251 178.66)",
+          "oklch(61% 0.0251 178.66)",
+          "oklch(72% 0.0251 178.66)",
+          "oklch(84% 0.0251 178.66)",
+          "oklch(95% 0.0251 178.66)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0243 165.25)",
+          "oklch(26% 0.0243 165.25)",
+          "oklch(37% 0.0243 165.25)",
+          "oklch(49% 0.0243 165.25)",
+          "oklch(61% 0.0243 165.25)",
+          "oklch(72% 0.0243 165.25)",
+          "oklch(84% 0.0243 165.25)",
+          "oklch(95% 0.0243 165.25)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0067 115.70)",
+          "oklch(26% 0.0067 115.70)",
+          "oklch(37% 0.0067 115.70)",
+          "oklch(49% 0.0067 115.70)",
+          "oklch(61% 0.0067 115.70)",
+          "oklch(72% 0.0067 115.70)",
+          "oklch(84% 0.0067 115.70)",
+          "oklch(95% 0.0067 115.70)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(26% 0.0000 0.00)",
+          "oklch(37% 0.0000 0.00)",
+          "oklch(49% 0.0000 0.00)",
+          "oklch(61% 0.0000 0.00)",
+          "oklch(72% 0.0000 0.00)",
+          "oklch(84% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0160 139.44)",
+          "oklch(26% 0.0160 139.44)",
+          "oklch(37% 0.0160 139.44)",
+          "oklch(49% 0.0160 139.44)",
+          "oklch(61% 0.0160 139.44)",
+          "oklch(72% 0.0160 139.44)",
+          "oklch(84% 0.0160 139.44)",
+          "oklch(95% 0.0160 139.44)"
+        ]
+      },
+      "tinted-panel": {
+        "role": "neutral",
+        "displayName": "Tinted Panel",
+        "tonalRamp": [
+          "oklch(15% 0.0114 128.59)",
+          "oklch(26% 0.0114 128.59)",
+          "oklch(37% 0.0114 128.59)",
+          "oklch(49% 0.0114 128.59)",
+          "oklch(61% 0.0114 128.59)",
+          "oklch(72% 0.0114 128.59)",
+          "oklch(84% 0.0114 128.59)",
+          "oklch(95% 0.0114 128.59)"
+        ]
+      },
+      "chrome-ink": {
+        "role": "neutral",
+        "displayName": "Chrome Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0150 151.77)",
+          "oklch(26% 0.0150 151.77)",
+          "oklch(37% 0.0150 151.77)",
+          "oklch(49% 0.0150 151.77)",
+          "oklch(61% 0.0150 151.77)",
+          "oklch(72% 0.0150 151.77)",
+          "oklch(84% 0.0150 151.77)",
+          "oklch(95% 0.0150 151.77)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Query title in the dark band."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Timing, plan, and methodology headings."
+      },
+      "title": {
+        "displayName": "Plan title",
+        "purpose": "Label for each side of a comparison."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Section descriptions and methodology."
+      },
+      "reading": {
+        "displayName": "Measurement",
+        "purpose": "Right-aligned timing values."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "SQL and recorded samples."
+      },
+      "label-mono": {
+        "displayName": "Monospace label",
+        "purpose": "Axis ticks and plan header metadata."
+      }
+    },
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "800px"
+      },
+      {
+        "name": "stacked",
+        "value": "630px"
+      },
+      {
+        "name": "aligned-plans-start",
+        "value": "631px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Utility download",
+      "kind": "button",
+      "refersTo": "download-link",
+      "description": "An outlined download action on deep teal chrome.",
+      "html": "<div class=\"ds-chrome\"><a class=\"ds-download\" href=\"./data.json\" download>Download JSON <svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"><path d=\"M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3\"/></svg></a></div>",
+      "css": ".ds-chrome {background:var(--deep,#0d2823);color:#e9f3eb;padding:12px;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif} .ds-download {display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #608077;border-radius:5px;color:inherit;text-decoration:none;font-size:.8rem;font-weight:620} .ds-download:hover {background:#21443b} .ds-download:focus-visible {outline:2px solid #267b66;outline-offset:3px;outline-color:#a5dbca}"
+    },
+    {
+      "name": "Report tabs",
+      "kind": "nav",
+      "refersTo": "report-tab",
+      "description": "A ruled strip with a green underline marking the active view.",
+      "html": "<div class=\"ds-tabs\" aria-label=\"Report view states\"><button type=\"button\" class=\"ds-tab\" aria-pressed=\"true\">Comparison</button><button type=\"button\" class=\"ds-tab\" aria-pressed=\"false\">SQL &amp; methodology</button></div>",
+      "css": ".ds-tabs {display:flex;gap:27px;border-bottom:1px solid var(--line,#d8e0d6)} .ds-tab {font:650 .88rem -apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;background:none;border:0;border-bottom:2px solid transparent;padding:16px 1px 14px;color:var(--muted,#52635b);cursor:pointer} .ds-tab:hover,.ds-tab[aria-pressed=true] {color:var(--ink,#172925)} .ds-tab[aria-pressed=true] {border-bottom-color:var(--green,#247365)} .ds-tab:focus-visible {outline:2px solid #267b66;outline-offset:3px}"
+    },
+    {
+      "name": "Timing comparison",
+      "kind": "custom",
+      "refersTo": "timing-track",
+      "description": "Two labeled timing tracks on one numeric scale.",
+      "html": "<div class=\"ds-timing\"><div class=\"ds-measure\"><span>Baseline</span><progress class=\"ds-baseline\" aria-label=\"Baseline execution time\" max=\"40\" value=\".095\"></progress><strong>0.095 ms</strong></div><div class=\"ds-measure\"><span>Candidate</span><progress aria-label=\"Candidate execution time\" max=\"40\" value=\"36.91\"></progress><strong>36.91 ms</strong></div><div class=\"ds-measure ds-axis\"><span></span><div><span>0</span><span>20</span><span>40 ms</span></div></div></div>",
+      "css": ".ds-timing {color:var(--ink,#172925);font:620 .84rem -apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif} .ds-measure {display:grid;grid-template-columns:68px minmax(0,1fr) 67px;gap:7px;align-items:center;min-height:36px} .ds-measure strong {font:650 .85rem var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace);text-align:right;white-space:nowrap} .ds-measure progress {appearance:none;width:100%;height:13px;background:#e6ebe3;border:0;border-radius:2px;overflow:hidden;--ds-bar:var(--clay,#a84227)} .ds-measure .ds-baseline {--ds-bar:var(--green,#247365)} .ds-measure progress::-webkit-progress-bar {background:#e6ebe3} .ds-measure progress::-webkit-progress-value {background:var(--ds-bar)} .ds-measure progress::-moz-progress-bar {background:var(--ds-bar)} .ds-axis {color:var(--muted,#52635b);font:.72rem var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace)} .ds-axis div {display:flex;justify-content:space-between;border-top:1px solid var(--line,#d8e0d6);padding-top:8px}"
+    },
+    {
+      "name": "Regression delta",
+      "kind": "chip",
+      "refersTo": "regression-delta",
+      "description": "A monospace measurement on the regression wash.",
+      "html": "<span class=\"ds-delta\">+36.81 ms</span>",
+      "css": ".ds-delta {display:inline-block;color:var(--clay,#a84227);background:var(--clay-wash,#f9eee8);font:650 .87rem var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace);padding:7px 9px;border-radius:4px;white-space:nowrap}"
+    },
+    {
+      "name": "Plan panel",
+      "kind": "card",
+      "refersTo": "plan-panel",
+      "description": "A ruled plan header, selectable tree, and tinted operator inspector.",
+      "html": "<section class=\"ds-plan\"><header class=\"ds-plan-head\"><i class=\"ds-swatch\" aria-hidden=\"true\"></i><strong>Baseline</strong><code>Index present</code></header><div class=\"ds-tree\"><button class=\"ds-row\" type=\"button\" aria-pressed=\"true\">Index Scan</button></div><div class=\"ds-inspector\"><strong>Index Scan</strong><dl><div><dt>Output rows per loop</dt><dd>20</dd></div><div><dt>Loops</dt><dd>1</dd></div></dl></div></section>",
+      "css": ".ds-plan {border:1px solid var(--line,#d8e0d6);border-radius:8px;overflow:hidden;background:var(--panel,#fff);color:var(--ink,#172925);font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif} .ds-plan-head {display:flex;gap:9px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line,#d8e0d6);background:#edf1e9;font-size:.9rem} .ds-plan-head code {margin-left:auto;color:var(--muted,#52635b);font:.72rem var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace)} .ds-swatch {width:8px;height:8px;border-radius:2px;background:var(--green,#247365)} .ds-tree {padding:7px} .ds-inspector {background:#f8faf6;border-top:1px solid var(--line,#d8e0d6);padding:11px 13px 13px;font-size:.83rem} .ds-inspector dl {margin:7px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;font-size:.77rem} .ds-inspector dt {color:var(--muted,#52635b)} .ds-inspector dd {margin:0;font:.74rem/1.5 var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace)} .ds-row {display:flex;align-items:center;justify-content:space-between;gap:7px;width:100%;min-height:36px;padding:7px 8px;border:1px solid transparent;border-radius:4px;background:none;color:var(--ink,#172925);font:.83rem -apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;text-align:left;cursor:pointer} .ds-row::after {content:\"\";width:5px;height:5px;margin-right:3px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)} .ds-row:hover {background:#f1f5ee;border-color:var(--line,#d8e0d6)} .ds-row[aria-pressed=true] {background:var(--green-wash,#eaf3ed);border-color:#c9dfd2;color:#164d41;font-weight:690} .ds-row:focus-visible {outline:2px solid #267b66;outline-offset:3px}"
+    },
+    {
+      "name": "Operator row",
+      "kind": "button",
+      "refersTo": "operator-row",
+      "description": "A compact selector with hover, focus, and pressed states.",
+      "html": "<button type=\"button\" class=\"ds-row\" aria-pressed=\"false\">Limit</button><button type=\"button\" class=\"ds-row\" aria-pressed=\"true\">Index Scan</button>",
+      "css": ".ds-row {display:flex;align-items:center;justify-content:space-between;gap:7px;width:100%;min-height:36px;padding:7px 8px;border:1px solid transparent;border-radius:4px;background:none;color:var(--ink,#172925);font:.83rem -apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;text-align:left;cursor:pointer} .ds-row::after {content:\"\";width:5px;height:5px;margin-right:3px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)} .ds-row:hover {background:#f1f5ee;border-color:var(--line,#d8e0d6)} .ds-row[aria-pressed=true] {background:var(--green-wash,#eaf3ed);border-color:#c9dfd2;color:#164d41;font-weight:690} .ds-row:focus-visible {outline:2px solid #267b66;outline-offset:3px}"
+    },
+    {
+      "name": "Code block",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "A softly tinted, wrapping block for SQL and samples.",
+      "html": "<pre class=\"ds-code\"><code>SELECT id, total\nFROM orders\nORDER BY created_at DESC;</code></pre>",
+      "css": ".ds-code {background:#edf1e9;color:var(--ink,#172925);border:1px solid var(--line,#d8e0d6);padding:15px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:6px;font:.85rem/1.65 var(--mono,ui-monospace,\"SFMono-Regular\",Consolas,monospace)} .ds-code code {font:inherit}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Printed Diagnostic Sheet",
+    "overview": "Query Clinic pairs deep teal chrome with an off-white reading surface. Fine rules and compact columns let a reader move between a result, its measurements, and the evidence behind it.\n\nThe sheet gives labels, units, and named plan operators a visible place beside their values. Side-by-side comparisons preserve those cues when they stack on smaller screens.",
+    "keyCharacteristics": [
+      "Dark teal framing and light paper evidence.",
+      "Condensed headings, compact interface text, and monospace measurements.",
+      "Ruled, aligned comparisons with immediate operator inspection."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Color Rule",
+        "body": "Pair every series color with a visible label. Reserve clay for candidate evidence and the slower verdict.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numeric Alignment Rule",
+        "body": "Align timing values at the right edge in monospace and keep each value with its unit.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Surface Rule",
+        "body": "Use the rule color and a change of fill to define neighboring light surfaces.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep paired evidence on a shared scale and print the measured values alongside it.",
+      "Do preserve visible labels as paired columns stack.",
+      "Do retain a visible keyboard outline on text tabs and operator rows."
+    ],
+    "donts": [
+      "Don't use clay for generic selection or navigation.",
+      "Don't give paired timing bars independent scales."
+    ]
+  }
+}
