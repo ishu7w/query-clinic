@@ -74,3 +74,5 @@ Node.js, npm and the checked-in lockfile are sufficient for the embedded slice. 
 ## Implemented release
 
 The project now includes the embedded runner, the native adapter, a revision-based PR workflow, a standalone static report, a manual Pages workflow and a case study with raw native captures. Native mode creates a unique pair of databases and restricted setup and reader roles on a dedicated loopback service. The base revision supplies the shared setup and query in PR mode. The proposed merge commit supplies the candidate migration. The runner checks the complete orders fixture for equality after both migrations. The PR workflow is informational for timing and fails on incorrect results or benchmark errors. GitHub Pages deployment is a separate default-branch workflow. See the README for the operator runbook and the case study for the captured regression and fix.
+
+PR artifacts contain benchmark JSON only. Use an independently obtained viewer with bounded JSON validation. The Pages workflow requires the full default-branch ref. Configure the Pages environment with an exact branch-only deployment rule.

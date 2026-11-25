@@ -1,3 +1,5 @@
+import { readReport } from './report-data.js';
+
 const element = id => document.getElementById(id);
 const number = new Intl.NumberFormat('en', { maximumFractionDigits: 0 });
 const ms = value => `${value.toFixed(value < 1 ? 3 : 2)} ms`;
@@ -81,7 +83,6 @@ function renderPlan(target, root) {
 }
 
 function render(data) {
-  if (data.version !== 1) throw new Error('Unsupported report format.');
   const { baseline, candidate } = data;
   const baselineMs = baseline.medianMs;
   const candidateMs = candidate.medianMs;
@@ -130,11 +131,9 @@ function render(data) {
 }
 
 try {
-  const response = await fetch('./data.json');
-  if (!response.ok) throw new Error('Report unavailable.');
-  render(await response.json());
+  render(await readReport(await fetch('./data.json')));
   element('loading').hidden = true;
   element('report').hidden = false;
 } catch {
-  element('loading').textContent = 'Could not load the benchmark. Run npm run bench and refresh this page.';
+  element('loading').textContent = 'Could not load a valid benchmark report. Check data.json or generate a fresh report.';
 }

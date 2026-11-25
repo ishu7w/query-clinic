@@ -40,13 +40,13 @@ Wait for `pg_isready` to report that the server is accepting connections. The co
 
 1. Add the project to a GitHub repository with Actions enabled. Keep the synthetic fixture and benchmark query in the base branch.
 2. Open a branch that adds `DROP INDEX orders_customer_history_idx;` to `fixture/migration.sql`. Open a PR. The workflow compares the PR base commit with GitHub’s proposed merge commit. It uses the base revision's shared setup and query, and checks that the full orders data matches after applying each migration.
-3. Open **Actions → Query Clinic**. The job summary shows the medians and result check. Download and extract **query-clinic-report**, serve its files with a static HTTP server, and open the report in your browser.
+3. Open **Actions → Query Clinic**. The job summary shows the medians and result check. Use the Actions summary for a quick comparison. For the interactive view, download only `data.json` from **query-clinic-report**, copy that file into `report/` in a separate, trusted default-branch checkout, and run `npm run dev` there. Treat PR output as untrusted data. Keep the viewer and all executable files from the trusted checkout.
 4. Restore the index by removing the drop in a follow-up change. A local comparison can also use `npm run bench:native -- <base-SHA> <head-SHA>` with two full SHAs. To see the restoration directly, use the slow commit as the base and the restored commit as the head.
 
 The check reports timing differences without gating merges on a noisy sample. Database errors, changed fixture data, and result mismatches fail the job. The PR workflow uses read-only repository permissions and a disposable service and receives no application secrets. Keep CI on GitHub-hosted runners.
 
 ## Publish the portfolio report
 
-The `report/` folder works on a static host. For GitHub Pages, choose **GitHub Actions** under repository **Settings → Pages** and dispatch **Publish Query Clinic report** on the default branch. The deployment uploads the committed synthetic capture. Review the JSON as well as the visible report before publishing, since PostgreSQL plans can contain SQL literals and object names.
+The `report/` folder works on a static host. For GitHub Pages, restrict the `github-pages` environment to the exact default branch (branch rule only), choose **GitHub Actions** under repository **Settings → Pages**, and dispatch **Publish Query Clinic report** on the default branch. The deployment uploads the committed synthetic capture. Review the JSON as well as the visible report before publishing, since PostgreSQL plans can contain SQL literals and object names.
 
 The evidence folder contains two native captures from GitHub Actions. Run `git fetch --tags` to retrieve the exact tested merge commits, then pass the two SHAs from the desired capture to the native CLI.
