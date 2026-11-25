@@ -1,1 +1,1 @@
--- Baseline migration entry point. Add candidate SQL here on a feature branch.
+DROP INDEX orders_customer_history_idx;
