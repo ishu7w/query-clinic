@@ -2,7 +2,7 @@
 
 Query Clinic compares PostgreSQL query performance across revisions of a fixture. It checks ordered result parity, records the observed plans and produces a static report with a shared time scale and selectable operators.
 
-[Case study and measured results](CASE-STUDY.md) · [Architecture and security plan](MASTER-PLAN.md)
+[Live interactive demo](https://ishu7w.github.io/query-clinic/) · [Case study and measured results](CASE-STUDY.md) · [Architecture and security plan](MASTER-PLAN.md)
 
 ## Open the report
 
