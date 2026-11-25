@@ -50,6 +50,15 @@ function describe(samples: Measurement[]) {
   return { samples: times, medianMs: midpoint, plan: representative.Plan };
 }
 
+const fixtureState = (db: Database) => db.read(read => read<{ count: number; fingerprint: string }>(`
+  SELECT count(*)::int AS count,
+         encode(sha256(convert_to(COALESCE(string_agg(
+           json_build_array(id, customer_id, placed_at, total_cents)::text,
+           chr(10) ORDER BY id
+         ), ''), 'UTF8')), 'hex') AS fingerprint
+  FROM orders
+`));
+
 const queryRows = (db: Database) => db.read(read => read(query));
 const measure = (db: Database) => db.read(async read => {
   const rows = await read<{ 'QUERY PLAN': Measurement[] }>(
@@ -87,9 +96,11 @@ async function capture() {
         current_setting('shared_buffers') AS shared_buffers,
         current_setting('work_mem') AS work_mem,
         current_setting('max_parallel_workers_per_gather') AS max_parallel_workers_per_gather`));
-    const [count] = await baseline.read(read => read<{ count: number }>('SELECT count(*)::int AS count FROM orders'));
-    const [candidateCount] = await candidate.read(read => read<{ count: number }>('SELECT count(*)::int AS count FROM orders'));
-    if (count.count !== candidateCount.count) throw new Error('Fixture row counts differ.');
+    const [baselineFixture] = await fixtureState(baseline);
+    const [candidateFixture] = await fixtureState(candidate);
+    if (baselineFixture.fingerprint !== candidateFixture.fingerprint) {
+      throw new Error('Fixture data differs after migrations. Compare schema changes against identical orders.');
+    }
     await measure(baseline);
     await measure(candidate);
     const before: Measurement[] = [];
@@ -111,7 +122,8 @@ async function capture() {
       runner: `${process.platform}/${process.arch} · Node ${process.versions.node}`,
       settings: settings[0],
       fixtureHash: createHash('sha256').update(JSON.stringify([setup, query])).digest('hex'),
-      fixtureRows: count.count,
+      fixtureRows: baselineFixture.count,
+      fixtureDataHash: baselineFixture.fingerprint,
       resultRows: expected.length,
       query: query.trim(),
       change: candidateMigration.trim(),

@@ -10,7 +10,7 @@
     "dev": "node src/serve.ts",
     "test": "node --test src/*.test.ts && tsc --noEmit",
     "bench:native": "node src/bench.ts --native",
-    "test:native": "node --test src/database.integration.ts"
+    "test:native": "node --test src/database.integration.ts src/bench.integration.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.6.0",

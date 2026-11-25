@@ -43,12 +43,11 @@ jobs:
       - name: Compare on disposable PostgreSQL
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           QUERY_CLINIC_DATABASE_URL: postgresql://postgres:query-clinic-ephemeral@127.0.0.1:${{ job.services.postgres.ports['5432'] }}/query_clinic
         run: |
           npm run test:native
           if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
-            npm run bench:native -- "$BASE_SHA" "$HEAD_SHA"
+            npm run bench:native -- "$BASE_SHA" "$GITHUB_SHA"
           else
             npm run bench:native
           fi

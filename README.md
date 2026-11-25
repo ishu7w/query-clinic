@@ -39,11 +39,11 @@ Wait for `pg_isready` to report that the server is accepting connections. The co
 ## Run against a pull request
 
 1. Add the project to a GitHub repository with Actions enabled. Keep the synthetic fixture and benchmark query in the base branch.
-2. Open a branch that adds `DROP INDEX orders_customer_history_idx;` to `fixture/migration.sql`. Open a PR. The workflow uses the two commit SHAs to read each revision's migration and the base revision's shared setup and query.
+2. Open a branch that adds `DROP INDEX orders_customer_history_idx;` to `fixture/migration.sql`. Open a PR. The workflow compares the PR base commit with GitHub’s proposed merge commit. It uses the base revision's shared setup and query, and checks that the full orders data matches after applying each migration.
 3. Open **Actions → Query Clinic**. The job summary shows the medians and result check. Download and extract **query-clinic-report**, serve its files with a static HTTP server, and open the report in your browser.
 4. Restore the index by removing the drop in a follow-up change. A local comparison can also use `npm run bench:native -- <base-SHA> <head-SHA>` with two full SHAs. To see the restoration directly, use the slow commit as the base and the restored commit as the head.
 
-The check reports timing differences without gating merges on a noisy sample. Database errors and result mismatches fail the job. The PR workflow uses read-only repository permissions and a disposable service and receives no application secrets. Keep CI on GitHub-hosted runners.
+The check reports timing differences without gating merges on a noisy sample. Database errors, changed fixture data, and result mismatches fail the job. The PR workflow uses read-only repository permissions and a disposable service and receives no application secrets. Keep CI on GitHub-hosted runners.
 
 ## Publish the portfolio report
 
